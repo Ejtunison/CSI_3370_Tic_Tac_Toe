@@ -48,4 +48,5 @@ ex: git pull origin Database
 
 * [ExplainShell](https://explainshell.com/explain?cmd=git+commit+-am) - Type in commands and it explains what they do
 
-
+### Image
+![Alt text](/MacintoshHD/Users/adriansandoval/Downloads/git.png?raw=true "Git Transactions")
