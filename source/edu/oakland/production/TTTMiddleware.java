@@ -45,6 +45,38 @@ public class TTTMiddleware {
     // if win or draw, provide Java code to end game;
     }
     
+    
+        public boolean checkForWin() {
+    	
+    	for(int i = 0; i < 2; i++){
+    		if(getCellValues(i,0).equals(getCellValues(i,1)) &&  getCellValues(i,1).equals(getCellValues(i,2)){
+    				return true;
+    		}
+    	}
+    	
+    	for(int j = 0; j < 2; j++){
+    		if(getCellValues(0,j).equals(getCellValues(1,j)) &&  getCellValues(1,j).equals(getCellValues(2,j)){
+    				return true;
+    		}
+    	}
+    	
+    	if(getCellValues(0,0).equals(getCellValues(1,1)) &&  getCellValues(1,1).equals(getCellValues(2,2){
+    			//return isThereAWin = true;
+    			return true;
+    	}
+    	
+    	if(getCellValues(0,2).equals(getCellValues(1,1)) &&  getCellValues(1,1).equals(getCellValues(2,0){
+    			return true;
+    	}
+    	
+    	//isThereAWin = false;
+    	
+        return false;
+    // provide Java code to print out win or draw; if neither, print nothing;
+
+    // if win or draw, provide Java code to end game;
+    }
+
     public boolean checkForDraw(char[] board)
     {
     	int spaceHolder= 0; 
