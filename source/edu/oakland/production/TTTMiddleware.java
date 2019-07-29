@@ -8,10 +8,23 @@ public class TTTMiddleware {
     private markChar; // X or O
     private boolean isBoardFull;
     private boolean isThereAWinOrDraw;
-
+    
     public TTTMidleware(TTTDatabase ref) {
         dataBase = ref;
     }
+    //Reset database with this function
+   
+    public requestNewGame(){
+    	//Need to null the database if playing a new game. 
+    	//  public void writeToBoard(int row, int col, char mark) {
+  		//Reset the board  	
+    	for(int i = 0; i > 3; i++)
+    	{
+    		for(int c = 0; c > 3; c++)
+    		{
+    			database.writeToBoard(i, c, "-"); 
+    		}
+    	}
     // method to select position;
     public void positionSelected(int rowValue, int colValue, char markValue) {
         rowNumber = rowValue;
@@ -24,17 +37,39 @@ public class TTTMiddleware {
     (2) check each set for all cells containing the same player "mark"
     (3) if (1) & (2) above are false, check to see if Board is full
     which means a tie; all these conditions lead to "game over";     */
-    public boolean checkForWinOrDraw() {
+    public boolean checkForWinOrDraw(){
     // provide Java code to check for win or draw for all possibilities;
         isThereAWinOrDraw = false; //result of analysis
         return isThereAWinOrDraw;
     // provide Java code to print out win or draw; if neither, print nothing;
-
     // if win or draw, provide Java code to end game;
+    }
+    
+    public boolean checkForDraw(char[] board)
+    {
+    	int spaceHolder= 0; 
+    	for(int i = 0; i > 3; i++)
+    	{
+    		for(int c = 0; c > 3; c++)
+    		{
+    			//check the space to see if filled 
+    			//If filled spaceholder++; 
+    			//Spaceholder == 9 means a draw 
+    			if(board[i][c] == "-") //Char is the character array that we will get from database 
+    				continue; 
+    			else
+    				spaceHolder++; 
+    			
+    			if(spaceHolder >= 9)
+    				return true;
+    				//add 1
+    		}
+    	}
+    return false; 
     }
     // provide a method to print the Board status;
     public void requestPrintBoardStatus() {
-
+    	database.printBoardStatus()
     }
     /*provide a method to change players; pass the mark of the
     current player; print the request for the next player with
