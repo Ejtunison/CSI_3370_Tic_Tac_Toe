@@ -45,7 +45,7 @@ public class TTTMiddleware {
     // if win or draw, provide Java code to end game;
     }
     
-    public boolean checkForDraw()
+    public boolean checkForDraw(char[] board)
     {
     	int spaceHolder= 0; 
     	for(int i = 0; i > 3; i++)
@@ -55,13 +55,17 @@ public class TTTMiddleware {
     			//check the space to see if filled 
     			//If filled spaceholder++; 
     			//Spaceholder == 9 means a draw 
-    			if(char == "-")
+    			if(board[i][c] == "-") //Char is the character array that we will get from database 
     				continue; 
     			else
+    				spaceHolder++; 
+    			
+    			if(spaceHolder >= 9)
+    				return true;
     				//add 1
     		}
     	}
-
+    return false; 
     }
     // provide a method to print the Board status;
     public void requestPrintBoardStatus() {
