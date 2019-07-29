@@ -8,7 +8,7 @@ public class TicTacToeManager
 	//reference variables for subsystem
 	private TTTDisplay display;
 	private TTTMiddleware middleware;
-	private TTTDAtabase database;
+	private TTTDatabase database;
 	private Scanner scanner;
 	private String currentPlayer;
 	private char currentPlayerMark;
@@ -18,6 +18,9 @@ public class TicTacToeManager
 	{
 		//create instance of the TTTManager;
 		TicTacToeManager manager = new TicTacToeManager();
+		database = new TTTDatabase();
+		middleware = new TTTMiddleware(database);
+		display = new TTTDisplay(middleware);
 		
 		//launch and initialize all TTTgame clases;
 		manager.launchApp();
