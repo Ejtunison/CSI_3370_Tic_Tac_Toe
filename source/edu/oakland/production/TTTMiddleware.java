@@ -17,7 +17,11 @@ public class TTTMiddleware {
     public requestNewGame(){
     	//Need to null the database if playing a new game. 
     	//  public void writeToBoard(int row, int col, char mark) {
-  		//Reset the board  	
+  		//Reset the board  
+  		
+  		database.initalizeboard(); 
+  		//Commenting out code below due to it DB already having a wipe board function 
+  		/*
     	for(int i = 0; i > 3; i++)
     	{
     		for(int c = 0; c > 3; c++)
@@ -25,6 +29,7 @@ public class TTTMiddleware {
     			database.writeToBoard(i, c, "-"); 
     		}
     	}
+    	*/
     // method to select position;
     public void positionSelected(int rowValue, int colValue, char markValue) {
         rowNumber = rowValue;
@@ -38,6 +43,7 @@ public class TTTMiddleware {
     (3) if (1) & (2) above are false, check to see if Board is full
     which means a tie; all these conditions lead to "game over";     */
     public boolean checkForWinOrDraw(){
+    	
     // provide Java code to check for win or draw for all possibilities;
         isThereAWinOrDraw = false; //result of analysis
         return isThereAWinOrDraw;
