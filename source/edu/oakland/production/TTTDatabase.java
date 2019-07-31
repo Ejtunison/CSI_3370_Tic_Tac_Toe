@@ -2,7 +2,7 @@ package edu.oakland.production;
 
 public class TTTDatabase {
 
-    private GameBoard gameboard;
+    private GameBoard gameBoard;
     private int numberOfRow;
     private int numberOfColumn;
     private char typeOfMark;
@@ -30,7 +30,7 @@ public class TTTDatabase {
     
     // provide method to print board after each player move;
     public void printBoardStatus() {
-        gameboard.printBoard()
+        gameBoard.printBoard()
     }
     /* provide a method to return the value of cell[i][j] in order to
     check for a win or a draw;     */
