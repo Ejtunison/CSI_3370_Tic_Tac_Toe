@@ -108,6 +108,11 @@ public class TTTMiddleware {
     public void requestPrintBoardStatus() {
     	database.printBoardStatus()
     }
+    
+    public char[2][2] getBoard(){
+    	//Display Asked for this method to be impletemented 
+    	return database.printBoardStatus(); 
+    }
     /*provide a method to change players; pass the mark of the
     current player; print the request for the next player with
     the opposite mark;     */
