@@ -1,0 +1,38 @@
+Before you clone the repository, make sure you have a public/private key set up. 
+
+Instructions for doing this:
+https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+
+Instructions for adding key to github:
+https://help.github.com/en/articles/adding-a-new-ssh-key-to-your-github-account
+
+Once this is done, open a Git bash where you want the base folder of the repository to go (mine is in my folder for this class)
+execute the following command:
+
+git clone git@github.com:Ejtunison/CSI_3370_Tic_Tac_Toe.git
+
+There are different branches for each section, to switch to any given branch, execute the following command:
+
+git checkout "branch_name"  (remove double quotes when executing the command)
+
+If you have made any changes to any files in the repository (or added anything new), you will need to actually add those
+changes to the respository.
+
+Open a git bash within the repository, there should be a light blue label in parentheses indicating which branch of the
+repository you are working in.
+
+Step 1: git status (this command shows all local changes to the repository)
+
+Step 2: git add file_names (you need to individually add all of the changed files using this command, replace "file_name" with the
+					actual file's name)
+
+Step 3: git status (again to make sure all the proper changes have been added)
+				
+Step 4: git commit -m"insert message here" (this command commits the changes to the repository, but does not push them)
+
+at this point it is good practice to do a "git pull" which pulls the most recent changs to the repository
+Once this is done, test your code to make sure it still works and then start at Step 1 again.
+
+Once you are sure there are no more changes to be made and everything works AND it's all been committed, the final command is:
+
+git push (this command pushes your committed changes to the repository so everyone with access to the repository can see them
