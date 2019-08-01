@@ -57,6 +57,13 @@ public class TTTDatabase {
     }
     /* provide a method to return the value of cell[i][j] in order to
     check for a win or a draw;     */
-    public char getCellValues() {
+    public char getCellValues(int row, int col) {
+        return board[row][col];
+    }
+
+    // provide method to pass reference to board
+    public char[2][2] printBoardStatus() {
+        return board;
+    }
 
     }
