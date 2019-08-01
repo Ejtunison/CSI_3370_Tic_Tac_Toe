@@ -14,6 +14,7 @@ public class TTTDatabase {
     columns are indexed from [0] to [2]; therefore the center cell
     would be cell[1][1];     */
 
+
     //initialize board
     public void initializeBoard() {
             board = new char[3][3];
@@ -59,4 +60,3 @@ public class TTTDatabase {
     public char getCellValues() {
 
     }
-}
