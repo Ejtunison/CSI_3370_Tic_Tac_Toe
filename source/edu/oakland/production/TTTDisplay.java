@@ -7,13 +7,20 @@ public class TTTDisplay {
     private char playerMark;
     private char[][]boardStatus;
     private boolean isWinOrDraw;
+    
+    /* TODO: --*/
 
-    // constructor to receive TTTMiddleware ref;
+    // constructor to receive TTTMiddleware ref from Manager Class;
     TTTDisplay(TTTMiddleware ref) {
         middleware = ref;
     }
 
-    // provide method to place mark in cell;
+    /* Provide method to place mark in cell
+     * Params:
+     *      row: player input
+     *      coulum: player input
+     *      mark: player input
+     */
     public void placeMarkOnBoard(int row, int column, char mark) {
         rowNumber = row;
         columnNumber = column;
@@ -22,14 +29,16 @@ public class TTTDisplay {
 
     }
 
-    // provide method to get results of a check for win or draw;
+    /* Provide method to get results of a check for win or draw;
+     * Calls Middleware to check game status
+     */
     public boolean checkforWinOrDraw() {
         isWinOrDraw = middleware.getResults();
         return isWinOrDraw;
     }
 
     // provide method to print Board status;
-    public void displayBoardStatus {
+    public void displayBoardStatus(){
 
         middleware.requestPrintBoardStatus();
     }
