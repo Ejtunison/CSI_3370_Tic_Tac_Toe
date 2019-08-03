@@ -1,6 +1,7 @@
 package edu.oakland.production;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 public class TTTDisplay {
 
@@ -8,61 +9,58 @@ public class TTTDisplay {
     private int rowNumber;
     private int columnNumber;
     private char playerMark;
-    private char[][]boardStatus;
+    private char[][]board;
     private boolean isWinOrDraw;
     
-    TTTDisplay(TTTMiddleware ref) {
+    public TTTDisplay(TTTMiddleware ref) {
         middleware = ref;
     }
 
     public void gameWelcome() {
 
+    	middleware.requestNewGame();
+    	        
     	printCurrentBoard();
     	
         Scanner sc = new Scanner(System.in);
-        String prompt = "Welcome to Tic-Tac-Toe. Would you like to start a new game? Enter Yes or No ";
+        String prompt = "\nWelcome to CSI3370 Summer 2019 Tic Tac Toe!\n\nWould you like to start a new game (yes/no)? :: ";
         String newGame = "";
         int numberOfPlayers = 0;
 
-        System.out.println(prompt);
+        System.out.print(prompt);
 
         newGame = sc.nextLine();
         
         newGame = newGame.toLowerCase();
 
-        if (newGame.equals("no")){
+        if (! newGame.equals("yes")){
+        	System.out.println("\nExiting...\n");
             System.exit(0);
         }
-
-        System.out.println("Enter number of players. Enter 1 or 2: ");
+        
+        System.out.print("\nEnter number of players (1 or 2) :: ");
         numberOfPlayers = sc.nextInt();
-        
-        do {
-            System.out.println("You entered an invalid number of player. ");
-            System.out.println("Enter number of players. Enter 1 or 2: ");
+
+        if (numberOfPlayers == 1) {
+          	System.out.println("\nOne player game against computer feature not currently implemented, select 2 players, please.");
+        }
+          	
+        while (numberOfPlayers != 2) {
+            System.out.println("\nERROR: " + numberOfPlayers + " is an invalid number of players.");
+            System.out.print("\nEnter number of players (1 or 2) :: ");
             numberOfPlayers = sc.nextInt();
-        } while (numberOfPlayers > 2);
-        
-        middleware.requestNewGame();
-    
+            
+            if (numberOfPlayers == 1) {
+            	System.out.println("\nOne player game against computer feature not currently implemented, select 2 players, please.");
+            }   
+        }        
     }
 
     public void printCurrentBoard() {
 
-        board = middleware.getBoard();
-
-        try {        
-            if( System.getProperty( "os.name" ).startsWith( "Window" ) )
-            Runtime.getRuntime().exec("cls");
-        else
-            Runtime.getRuntime().exec("clear");
-        }
-
-        catch (IOException e) {
-            for(int i = 0; i < 1000; i++) {
-             System.out.println();
-        } }
+        board = middleware.getBoard();        
                 
+        System.out.println();
         System.out.println("+-------------------------------------------------------------+");
         System.out.println("| ############ CSI3370 Summer 2019 - Tic Tac Toe ############ |");        
         System.out.println("+-------------------------------------------------------------+");
@@ -111,9 +109,9 @@ public class TTTDisplay {
                 System.out.println("|                              |                              |");
             }
 
-        System.out.println("+-------------------------------------------------------------+");
-        
         }
+
+        System.out.println("+-------------------------------------------------------------+");       
     }
 
     public void placeMarkOnBoard(int row, int column, char mark) {
@@ -126,15 +124,15 @@ public class TTTDisplay {
     		 System.out.println("Invalid move (Mark has already been placed there). Try again - Enter a char for row, 'A', 'B', or 'C' and Enter an int for column, '1', '2', or '3':");
     		 Scanner in = new Scanner(System.in);
     		 String input = in.nextLine();
-    		 char row = input.charAt(0);
-    		 int column = Integer.parseInt("" + input.chartAt(1));
+    		 row = input.charAt(0);
+    		 column = Integer.parseInt("" + input.charAt(1));
     		
             placeMarkOnBoard(row, column, playerMark);    		    		
         }
     }
 
-    public boolean checkforWinOrDraw() {
-        isWinOrDraw = middleware.getResults();
+    public boolean checkForWinOrDraw() {
+        isWinOrDraw = middleware.checkForWin();
         return isWinOrDraw;
     }
 
@@ -143,8 +141,9 @@ public class TTTDisplay {
         middleware.requestPrintBoardStatus();
     }
 
-    public void changePlayer(char mark) {
+    public char changePlayer(char mark) {
         playerMark = mark;
         middleware.changeActivePlayer(playerMark);
+        return playerMark;
     }
 }
