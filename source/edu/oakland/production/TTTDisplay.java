@@ -132,7 +132,7 @@ public class TTTDisplay {
     }
 
     public boolean checkForWinOrDraw() {
-        isWinOrDraw = middleware.checkForWin();
+        isWinOrDraw = middleware.getResults();
         return isWinOrDraw;
     }
 
