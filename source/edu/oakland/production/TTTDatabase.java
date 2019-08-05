@@ -22,7 +22,7 @@ public class TTTDatabase {
             for(int i = 0; i < 3; i++) {
                 // loop through columns;
                 for(int j = 0; j < 3; j++) {
-                    board[i][j] = ' ';
+                    board[i][j] = '-';
                 }
             }
         }
