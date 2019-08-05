@@ -8,8 +8,9 @@ public class TTTMiddleware {
     private char markChar; // X or O
     private boolean isBoardFull;
     private boolean isThereAWinOrDraw;
-    
+    private int turnNum;
     public TTTMiddleware(TTTDatabase ref) {
+    	turnNum = 0; 
         database = ref;
     }
     //Reset database with this function
@@ -21,22 +22,20 @@ public class TTTMiddleware {
   		
   		database.initializeBoard(); 
   		//Commenting out code below due to it DB already having a wipe board function 
-  		/*
-    	for(int i = 0; i > 3; i++)
-    	{
-    		for(int c = 0; c > 3; c++)
-    		{
-    			database.writeToBoard(i, c, "-"); 
-    		}
-    	}
-    	*/
-    // method to select position;
+
+  		// method to select position;
     }
     public void positionSelected(int rowValue, int colValue, char markValue) {
         rowNumber = rowValue;
         colNumber = colValue;
         markChar = markValue;
         database.writeToBoard(rowNumber, colNumber, markChar);
+        
+        turnNum++; 
+        if(turnNum > 8)
+        {
+    	checkForDraw(); 
+    	}
     }
     /* provide method to check for win or draw; this involves
     (1) retrieving sets of all rows, columns and diagonal cells;
@@ -55,7 +54,8 @@ public class TTTMiddleware {
 //        public boolean checkForWin(char[][] board) {
     	
         public boolean checkForWin() {
-
+        
+        	
       	    char[][]board;
         	board = database.printBoardStatus();
         	
@@ -80,31 +80,16 @@ public class TTTMiddleware {
     			return true;
     	    }
 
-    	
+
         return false;
     }
 
     public boolean checkForDraw()
     {
-        int spaceHolder= 0;
-        for(int i = 0; i > 3; i++)
-        {
-            for(int c = 0; c > 3; c++)
-            {
-                //check the space to see if filled
-                //If filled spaceholder++;
-                //Spaceholder == 9 means a draw
-                if(dataBase.getCellValues(i,c) == "-") //Char is the character array that we will get from database
-                    continue;
-                else
-                    spaceHolder++;
-
-                if(spaceHolder >= 9)
-                    return true;
-                //add 1
-            }
-        }
-        return false;
+    	if(turnNum > 8)
+    		return true;
+    	else 
+    		return false; 
     }
     // provide a method to print the Board status;
     public void requestPrintBoardStatus() {
@@ -114,12 +99,6 @@ public class TTTMiddleware {
     public char[][] getBoard(){
     	//Display Asked for this method to be impletemented 
     	return database.printBoardStatus(); 
-    }
-
-    public boolean isValid()
-    {
-    	//Middleware needs to develop logic for this method
-    	return true;
     }
     
     /*provide a method to change players; pass the mark of the
@@ -133,9 +112,9 @@ public class TTTMiddleware {
         System.out.println("\n *** Player " + markChar + "'s turn *** ");
     }
     
-        public boolean isValid(int i, int j)
-    {
-    	if(getCellValues(i,j).equals("X") || getCellValues(i,j).equals("0"))
+    public boolean isValid(int i, int j)
+    {	
+    	if(database.getCellValues(i,j).equals('X') || database.getCellValues(i,j).equals('O'))
     	{
     		return false;	
     	}
