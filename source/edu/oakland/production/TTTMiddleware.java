@@ -132,4 +132,16 @@ public class TTTMiddleware {
         // provide Java code to print out who the next player will be;
         System.out.println("\n *** Player " + markChar + "'s turn *** ");
     }
+    
+        public boolean isValid(int i, int j)
+    {
+    	if(getCellValues(i,j).equals("X") || getCellValues(i,j).equals("0"))
+    	{
+    		return false;	
+    	}
+    	else
+    	{
+    	return true;	
+    	}
+    }
 }
