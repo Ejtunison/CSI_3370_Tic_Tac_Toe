@@ -60,25 +60,44 @@ public class TTTMiddleware {
         	board = database.printBoardStatus();
         	
         	for(int i = 0; i < 2; i++){
-    		    if(board[i][0] == board[i][1] && board[i][1]== board[i][2]){
+    		    if(board[i][0] == 'X' && board[i][1] == 'X' && board[i][2] == 'X'){
     				return true;
     		    }
     	    }
+
+            for(int i = 0; i < 2; i++){
+                if(board[i][0] == 'O' && board[i][1] == 'O' && board[i][2] == 'O'){
+                    return true;
+                }
+            }
     	
     	    for(int j = 0; j < 2; j++){
-    		    if(board[0][j] == board[1][j] &&  board[1][j] == board[2][j]){
-    				return true;
-    		    }
-    	    }
+                if(board[0][j] == 'X' &&  board[1][j] == 'X' && board[2][j] == 'X'){
+                    return true;
+                }
+            }
+
+            for(int j = 0; j < 2; j++){
+                if(board[0][j] == 'O' &&  board[1][j] == 'O' && board[2][j] == 'O'){
+                    return true;
+                }
+            }
     	
-    	    if(board[0][0] == board[1][1] &&  board[1][1] == board[2][2]){
-    			//return isThereAWin = true;
+    	    if(board[0][0] == 'X' &&  board[1][1] == 'X' && board[2][2] == 'X'){
+                return true;
+            }
+
+            if(board[0][0] == 'O' &&  board[1][1] == 'O' && board[2][2] == 'O'){
+                return true;
+            }
+    	
+    	    if(board[0][2] == 'X' &&  board[1][1] == 'X' && board[2][0] == 'X'){
     			return true;
     	    }
-    	
-    	    if(board[0][2] == board[1][1] &&  board[1][1] == board[2][0]){
-    			return true;
-    	    }
+
+            if(board[0][2] == 'O' &&  board[1][1] == 'O' && board[2][0] == 'O'){
+                return true;
+            }
 
 
         return false;
