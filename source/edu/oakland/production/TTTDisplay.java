@@ -10,6 +10,7 @@ public class TTTDisplay {
     private boolean isWinOrDraw;
     private boolean isWin;
     private boolean isDraw;
+    private char playerMark;
 
     public TTTDisplay(TTTMiddleware ref) {
         middleware = ref;
@@ -160,7 +161,7 @@ public class TTTDisplay {
         
         
             validMove = middleware.isValid(rowNumber, columnNumber);
-
+            
             if (validMove == false)
             {
                 System.out.println("\nERROR: " + cell + " already has a value.");
@@ -172,6 +173,12 @@ public class TTTDisplay {
 
     }
 
+/*    public boolean checkForWinOrDraw() {
+        isWinOrDraw = middleware.getResults();
+        return isWinOrDraw;
+    }
+ */
+
     public boolean checkForWin() {
         isWin = middleware.checkForWin();
         return isWin;
@@ -182,8 +189,13 @@ public class TTTDisplay {
         return isDraw;
     }
 
+    public char[][] displayBoardStatus(){
+
+        return middleware.getBoard();
+    }
+
     public char changePlayer(char mark) {
-        char playerMark = mark;
+        playerMark = mark;
         middleware.changeActivePlayer(playerMark);
         return playerMark;
     }
