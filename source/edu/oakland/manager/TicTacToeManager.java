@@ -73,7 +73,10 @@ public class TicTacToeManager
 			else
 			{
 				System.out.println("\nDRAW: No winner this game!");
+				
 				launchApp();
+				
+				chooseSquare();
 			}
 		
 		}
@@ -85,6 +88,8 @@ public class TicTacToeManager
 			System.out.println("\n                      *** Restarting Game ***");
 			
 			launchApp();
+			
+			chooseSquare();
 		}
 	}
 
