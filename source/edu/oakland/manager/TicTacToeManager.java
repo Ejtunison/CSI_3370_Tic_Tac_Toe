@@ -99,10 +99,10 @@ public class TicTacToeManager
 	public void changePlayers()
 	{
 		if (currentPlayerMark == 'X') {
-			display.changePlayer('O');
+			currentPlayerMark = display.changePlayer('O');
 		}
 		else {
-			display.changePlayer('X');
+			currentPlayerMark = display.changePlayer('X');
 		}
 
 		//loop back to the chooseSquare() method;
