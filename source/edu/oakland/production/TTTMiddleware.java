@@ -109,12 +109,12 @@ public class TTTMiddleware {
         move just made;         */
         markChar = mark;
         // provide Java code to print out who the next player will be;
-        System.out.println("\n *** Player " + markChar + "'s turn *** ");
+        System.out.println("\n                   *** Player " + markChar + "'s turn *** ");
     }
     
     public boolean isValid(int i, int j)
     {	
-    	if(database.getCellValues(i,j).equals('X') || database.getCellValues(i,j).equals('O'))
+    	if(database.getCellValues(i,j) == 'X' || database.getCellValues(i,j) == 'O')
     	{
     		return false;	
     	}

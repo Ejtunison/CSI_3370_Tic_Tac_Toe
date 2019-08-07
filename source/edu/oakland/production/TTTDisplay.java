@@ -8,6 +8,8 @@ public class TTTDisplay {
     private TTTMiddleware middleware;
     private char[][]board;
     private boolean isWinOrDraw;
+    private boolean isWin;
+    private boolean isDraw;
 
     public TTTDisplay(TTTMiddleware ref) {
         middleware = ref;
@@ -43,13 +45,15 @@ public class TTTDisplay {
             if (numberOfPlayers == 1) {
             	System.out.println("\nOne player game against computer feature not currently implemented, select 2 players, please.");
             }
+            else if (numberOfPlayers == 2) {
+            	break;
+            }
             else {
                 System.out.println("\nERROR: " + numberOfPlayers + " is an invalid number of players.");
             }
         }
         while (numberOfPlayers != 2);
-
-        sc.close();
+        
     }
 
     public void printCurrentBoard() {
@@ -115,43 +119,73 @@ public class TTTDisplay {
     It is the central 'move' function of the game for Display.
     */
     public void placeMarkOnBoard(char currentPlayerMark) {
+    	
+    	Scanner scan = new Scanner(System.in);
+    	String cell = "";
+    	char rowChar;
+        int rowNumber;
+        int columnNumber;
+        boolean validMove = false;
+                
+    	do {
+        
+            do {
+        
+                System.out.print("\nSelect an empty cell to place your mark in (A0, B2...) :: ");
+        
+                cell = scan.nextLine();
+                cell = cell.toUpperCase();
+            
+                rowChar = cell.charAt(0);
 
-        System.out.print("\nPlayer " + currentPlayerMark + "\'s Turn: Select an empty cell to place your mark in (Ex. B2) :: ");
-		Scanner scanner = new Scanner(System.in);
-        boolean hasPlacedMark = false;
-        do {
-            String cell = scanner.nextLine().toUpperCase();
-            char rowChar = cell.charAt(0);
-            int rowNumber;
+                switch (rowChar) {
+                    case 'A': rowNumber = 0;
+                                break;
+                    case 'B': rowNumber = 1;
+                                break;
+                    case 'C': rowNumber = 2;
+                                break;
+                    default:  rowNumber = -1;
+                                break;
+                }
 
-            switch (rowChar) {
-                case 'A': rowNumber = 0;
-                            break;
-                case 'B': rowNumber = 1;
-                            break;
-                case 'C': rowNumber = 2;
-                            break;
-                default:  rowNumber = -1;
-                            break;
+                columnNumber = Character.getNumericValue(cell.charAt(1));
+            
+                if ((rowNumber < 0 || rowNumber > 2) || (columnNumber < 0 || columnNumber > 2)) 
+                {
+                    System.out.println("\nERROR: " + cell + " is an invalid selection.");
+                }            
+            
+            } while ((rowNumber < 0 || rowNumber > 2) || (columnNumber < 0 || columnNumber > 2));
+        
+        
+            validMove = middleware.isValid(rowNumber, columnNumber);
+
+            if (validMove = false)
+            {
+                System.out.println("\nERROR: " + cell + " already has a value.");
             }
+        
+        } while (validMove = false);
+        
+        middleware.positionSelected(rowNumber, columnNumber, currentPlayerMark);
 
-            columnNumber = Character.getNumericValue(cell.charAt(1));
-
-            /* positionSelected returns True if a mark has been placed on the board
-               (input was valid) and False if not (invalid) */
-            hasPlacedMark = middleware.positionSelected(rowNumber, columnNumber, currentPlayerMark);
-            if(!hasPlacedMark) {
-                System.out.println("Error: Mark has already been placed there or invalid input. Try again, Player " + currentPlayerMark + " :: ");
-            }
-        }
-        while(!hasPlacedMark);
-
-        scanner.close();
     }
 
-    public boolean checkForWinOrDraw() {
+/*    public boolean checkForWinOrDraw() {
         isWinOrDraw = middleware.getResults();
         return isWinOrDraw;
+    }
+ */
+
+    public boolean checkForWin() {
+        isWin = middleware.checkForWin();
+        return isWin;
+    }
+    
+    public boolean checkForDraw() {
+        isDraw = middleware.checkForDraw();
+        return isDraw;
     }
 
     public void displayBoardStatus(){
@@ -160,7 +194,7 @@ public class TTTDisplay {
     }
 
     public char changePlayer(char mark) {
-        playerMark = mark;
+        char playerMark = mark;
         middleware.changeActivePlayer(playerMark);
         return playerMark;
     }
