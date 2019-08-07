@@ -38,7 +38,7 @@ public class TicTacToeManager
 
 		display.gameWelcome();
 
-		currentPlayerMark = display.changePlayer('X');
+		currentPlayerMark = display.changePlayer('O');
 	}
 
 	//Provide method to select board square
@@ -73,9 +73,7 @@ public class TicTacToeManager
 			else
 			{
 				System.out.println("\nDRAW: No winner this game!");
-				
 				launchApp();
-				
 				chooseSquare();
 			}
 		
@@ -88,7 +86,6 @@ public class TicTacToeManager
 			System.out.println("\n                      *** Restarting Game ***");
 			
 			launchApp();
-			
 			chooseSquare();
 		}
 	}
@@ -103,13 +100,8 @@ public class TicTacToeManager
 	//provide method to change players if no win or draw
 	public void changePlayers()
 	{
-		if (currentPlayerMark == 'X') {
-			currentPlayerMark = display.changePlayer('O');
-		}
-		else {
-			currentPlayerMark = display.changePlayer('X');
-		}
-
+		currentPlayerMark = display.changePlayer(currentPlayerMark);
+		
 		//loop back to the chooseSquare() method;
 		chooseSquare();
 	}
