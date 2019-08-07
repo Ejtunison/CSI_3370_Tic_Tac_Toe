@@ -161,12 +161,12 @@ public class TTTDisplay {
         
             validMove = middleware.isValid(rowNumber, columnNumber);
 
-            if (validMove = false)
+            if (validMove == false)
             {
                 System.out.println("\nERROR: " + cell + " already has a value.");
             }
         
-        } while (validMove = false);
+        } while (validMove == false);
         
         middleware.positionSelected(rowNumber, columnNumber, currentPlayerMark);
 
