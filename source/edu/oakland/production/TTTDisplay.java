@@ -195,7 +195,16 @@ public class TTTDisplay {
     }
 
     public char changePlayer(char mark) {
-        playerMark = mark;
+ 
+    	playerMark = mark;
+    	
+    	if (playerMark == 'X') {
+			playerMark = 'O';
+		}
+		else {
+			playerMark = 'X';
+		}
+    	
         middleware.changeActivePlayer(playerMark);
         return playerMark;
     }
