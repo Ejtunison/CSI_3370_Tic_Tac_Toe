@@ -172,12 +172,6 @@ public class TTTDisplay {
 
     }
 
-/*    public boolean checkForWinOrDraw() {
-        isWinOrDraw = middleware.getResults();
-        return isWinOrDraw;
-    }
- */
-
     public boolean checkForWin() {
         isWin = middleware.checkForWin();
         return isWin;
@@ -186,11 +180,6 @@ public class TTTDisplay {
     public boolean checkForDraw() {
         isDraw = middleware.checkForDraw();
         return isDraw;
-    }
-
-    public void displayBoardStatus(){
-
-        middleware.requestPrintBoardStatus();
     }
 
     public char changePlayer(char mark) {
