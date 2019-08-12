@@ -10,31 +10,29 @@ public class TTTMiddleware {
     private boolean isThereAWinOrDraw;
     private int turnNum;
     public TTTMiddleware(TTTDatabase ref) {
-    	turnNum = 0; 
+    	turnNum = 0;
         database = ref;
     }
     //Reset database with this function
-   
-    public void requestNewGame(){
-    	//Need to null the database if playing a new game. 
-    	//  public void writeToBoard(int row, int col, char mark) {
-  		//Reset the board  
-  		
-  		database.initializeBoard(); 
-  		//Commenting out code below due to it DB already having a wipe board function 
 
-  		// method to select position;
+    public void requestNewGame(){
+    	//Need to null the database if playing a new game.
+
+        //reset the turn counter for draws
+  		turnNum = 0;
+
+  		database.initializeBoard();
     }
     public void positionSelected(int rowValue, int colValue, char markValue) {
         rowNumber = rowValue;
         colNumber = colValue;
         markChar = markValue;
         database.writeToBoard(rowNumber, colNumber, markChar);
-        
-        turnNum++; 
+
+        turnNum++;
         if(turnNum > 8)
         {
-    	checkForDraw(); 
+    	checkForDraw();
     	}
     }
     /* provide method to check for win or draw; this involves
@@ -50,15 +48,15 @@ public class TTTMiddleware {
 
         return false;
     }
-    
+
 //        public boolean checkForWin(char[][] board) {
-    	
+
         public boolean checkForWin() {
-        
-        	
+
+
       	    char[][]board;
         	board = database.printBoardStatus();
-        	
+
         	for(int i = 0; i < 2; i++){
     		    if(board[i][0] == 'X' && board[i][1] == 'X' && board[i][2] == 'X'){
     				return true;
@@ -70,7 +68,7 @@ public class TTTMiddleware {
                     return true;
                 }
             }
-    	
+
     	    for(int j = 0; j < 2; j++){
                 if(board[0][j] == 'X' &&  board[1][j] == 'X' && board[2][j] == 'X'){
                     return true;
@@ -82,7 +80,7 @@ public class TTTMiddleware {
                     return true;
                 }
             }
-    	
+
     	    if(board[0][0] == 'X' &&  board[1][1] == 'X' && board[2][2] == 'X'){
                 return true;
             }
@@ -90,7 +88,7 @@ public class TTTMiddleware {
             if(board[0][0] == 'O' &&  board[1][1] == 'O' && board[2][2] == 'O'){
                 return true;
             }
-    	
+
     	    if(board[0][2] == 'X' &&  board[1][1] == 'X' && board[2][0] == 'X'){
     			return true;
     	    }
@@ -107,19 +105,19 @@ public class TTTMiddleware {
     {
     	if(turnNum > 8)
     		return true;
-    	else 
-    		return false; 
+    	else
+    		return false;
     }
     // provide a method to print the Board status;
     public void requestPrintBoardStatus() {
     	database.printBoardStatus();
     }
-    
+
     public char[][] getBoard(){
-    	//Display Asked for this method to be impletemented 
-    	return database.printBoardStatus(); 
+    	//Display Asked for this method to be impletemented
+    	return database.printBoardStatus();
     }
-    
+
     /*provide a method to change players; pass the mark of the
     current player; print the request for the next player with
     the opposite mark;     */
@@ -130,16 +128,16 @@ public class TTTMiddleware {
         // provide Java code to print out who the next player will be;
         System.out.println("\n                   *** Player " + markChar + "'s turn *** ");
     }
-    
+
     public boolean isValid(int i, int j)
-    {	
+    {
     	if(database.getCellValues(i,j) == 'X' || database.getCellValues(i,j) == 'O')
     	{
-    		return false;	
+    		return false;
     	}
     	else
     	{
-    	return true;	
+    	return true;
     	}
     }
 }

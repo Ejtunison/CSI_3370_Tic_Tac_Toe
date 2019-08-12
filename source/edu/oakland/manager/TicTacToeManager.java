@@ -15,7 +15,7 @@ public class TicTacToeManager
 	private char currentPlayerMark;
 	private boolean isWinResult;
 	private boolean isDrawResult;
-	
+
 	public static void main(String[] args)
 	{
 		//create instance of the TTTManager;
@@ -44,17 +44,11 @@ public class TicTacToeManager
 	//Provide method to select board square
 	public void chooseSquare()
 	{
-		selectMove();
-
-		printCurrentBoard();
-		
-		checkForWinOrDraw();
-	}
-
-	//provide method to choose board move
-	public void selectMove()
-	{
 		display.placeMarkOnBoard(currentPlayerMark);
+
+		display.printCurrentBoard();
+
+		checkForWinOrDraw();
 	}
 
 	//Provide method to check for win or draw, if none, changes player
@@ -62,13 +56,13 @@ public class TicTacToeManager
 	{
 		isWinResult = display.checkForWin();
 		isDrawResult = display.checkForDraw();
-		
+
 		if(isWinResult == false)
 		{
 			if(isDrawResult == false)
 			{
 				changePlayers();
-			}			
+			}
 
 			else
 			{
@@ -76,32 +70,27 @@ public class TicTacToeManager
 				launchApp();
 				chooseSquare();
 			}
-		
+
 		}
-		
+
 		else
-		{			
+		{
 			System.out.println("\n               WINNNER: Player " + currentPlayerMark + " won this game!");
 
 			System.out.println("\n                      *** Restarting Game ***");
-			
+
 			launchApp();
 			chooseSquare();
 		}
 	}
 
 
-	//provide method to print board status
-	public void printCurrentBoard()
-	{
-		display.printCurrentBoard();
-	}
 
 	//provide method to change players if no win or draw
 	public void changePlayers()
 	{
 		currentPlayerMark = display.changePlayer(currentPlayerMark);
-		
+
 		//loop back to the chooseSquare() method;
 		chooseSquare();
 	}
