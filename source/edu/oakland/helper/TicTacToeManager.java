@@ -75,7 +75,7 @@ public class TicTacToeManager
 
 		else
 		{
-			System.out.println("\n               WINNNER: Player " + currentPlayerMark + " won this game!");
+			System.out.println("\n               WINNER: Player " + currentPlayerMark + " won this game!");
 
 			System.out.println("\n                      *** Restarting Game ***");
 
